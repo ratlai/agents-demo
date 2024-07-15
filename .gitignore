@@ -1,0 +1,17 @@
+# Python
+*.pyc
+__pycache__/
+
+# Virtual Environment
+venv/
+agent-venv/
+.env
+
+# Config files
+config/secrets.yaml
+tests/__pycache__/
+
+tmp/images
+
+credentials.json
+token.json
