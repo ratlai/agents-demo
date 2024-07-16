@@ -10,6 +10,8 @@ from langchain_community.agent_toolkits import GmailToolkit
 from langchain_experimental.tools import PythonREPLTool
 from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
 from dotenv import load_dotenv
+import json
+
 
 load_dotenv()
 
@@ -31,6 +33,13 @@ def get_user_session(user_email):
     return user_sessions[user_email]
 
 llm = ChatOpenAI(api_key=os.getenv('OPENAI_API_KEY'), model=os.getenv('MODEL'), streaming=True)
+
+credentials_json_str = os.getenv('GMAIL_CREDENTIALS_JSON')
+credentials_json = json.loads(credentials_json_str)
+
+credentials_path = 'credentials.json'
+with open(credentials_path, 'w') as f:
+    f.write(credentials_json_str)
 
 # Define the agent with memory and prompt template
 search = TavilySearchAPIWrapper()
