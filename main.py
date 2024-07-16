@@ -12,10 +12,7 @@ logger = logging.getLogger(__name__)
 # Define avatars for agents
 agent_avatars = {
     "USER": "image/user.png",
-    "Bujji": "image/ratl.png",
-    "Research_Agent": "image/research.png",
-    "Api_Test_Agent": "image/tester.png",
-    "Email_Agent": "image/email.png"
+    "Bujji": "image/ratl.png"
 }
 
 # Streamlit interface
@@ -51,14 +48,11 @@ if prompt := st.chat_input("Send a message to Bujji"):
     # Log API response
     logger.info(f"API response: {response}")
 
-    # Display responses from all agents
-    for agent_response in response:
-        agent = agent_response["agent"]
-        agent_message = agent_response["response"]
-        st.session_state.messages.append({"agent": agent, "response": agent_message})
-        avatar = agent_avatars.get(agent, "👤")
-        with st.chat_message(agent, avatar=avatar):
-            if "```" in agent_message:
-                st.markdown(agent_message)  # Display as Markdown if the response contains code
-            else:
-                st.write(agent_message)
+    # Display response from Bujji
+    st.session_state.messages.append({"agent": "Bujji", "response": response})
+    avatar = agent_avatars.get("Bujji", "👤")
+    with st.chat_message("Bujji", avatar=avatar):
+        if "```" in response:
+            st.markdown(response)  # Display as Markdown if the response contains code
+        else:
+            st.write(response)
