@@ -44,7 +44,7 @@ with open(credentials_path, 'w') as f:
 # Define the agent with memory and prompt template
 search = TavilySearchAPIWrapper()
 tavily_tool = TavilySearchResults(api_wrapper=search)
-gmail_toolkit = GmailToolkit()
+gmail_toolkit = GmailToolkit(credentials_path=credentials_path)
 gmail_tools = gmail_toolkit.get_tools()
 python_tools = [PythonREPLTool()]
 
