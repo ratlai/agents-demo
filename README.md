@@ -6,7 +6,7 @@ This project implements a multi-agent system using LangChain, Streamlit, and Ope
 
 - **Multi-Agent Coordination**: Bujji, the main agent, coordinates tasks among various sub-agents.
 - **Research Agent**: Handles queries using the Tavily API.
-- **Email Agent**: Sends emails as required.
+- **Email Agent**: Sends emails as required (optional, only if credentials.json is present).
 - **API Test Agent**: Generates and executes API test code using the PythonREPLTool.
 - **User Interaction**: Provides a user-friendly interface for interacting with the agents.
 
@@ -16,36 +16,30 @@ This project implements a multi-agent system using LangChain, Streamlit, and Ope
 - **Streamlit**: For creating the web interface.
 - **OpenAI GPT**: For natural language processing.
 - **Tavily API**: For handling research queries.
-- **Gmail Toolkit**: For sending emails.
 - **PythonREPLTool**: For executing API test code.
 
 ## Project Structure
 
 ```
-|-- agent.py
-|-- app.py
-|-- prompts.py
-|-- .env
-|-- requirements.txt
-|-- images
-|   |-- user.png
-|   |-- ratl.png
-|   |-- research.png
-|   |-- tester.png
-|   |-- email.png
+.
+├── README.md
+├── agent.py
+├── demo
+│   └── demo.mov
+├── image
+│   ├── ratl.png
+│   └── user.png
+├── main.py
+├── requirements.txt
 ```
 
 ### `agent.py`
 
 Contains the main logic for handling user inputs, delegating tasks to sub-agents, and processing their responses.
 
-### `app.py`
+### `main.py`
 
 Sets up the Streamlit interface, handles user inputs, and displays messages from agents.
-
-### `prompts.py`
-
-Defines the prompt templates for interactions between Bujji and sub-agents.
 
 ### `.env`
 
@@ -66,7 +60,6 @@ Contains avatars for different agents.
 - Python 3.8+
 - OpenAI API Key
 - Tavily API Key
-- Gmail API Credentials
 
 ### Installation
 
@@ -94,7 +87,7 @@ Contains avatars for different agents.
     MODEL=gpt-4o
     ```
 
-4. Add Gmail Credentials:
+4. (Optional) Add Gmail Credentials:
 
     To use the Gmail API for sending emails, follow these steps:
 
@@ -106,7 +99,6 @@ Contains avatars for different agents.
         - Click on "Create credentials" and select "Service account".
         - Fill in the necessary details and create the service account.
         - Download the `credentials.json` file and save it in the root directory of your project.
-
 
 ### Running the Application
 
