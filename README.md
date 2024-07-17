@@ -1,5 +1,7 @@
 # Conversational App with Bujji
 
+### Checkout the Demo: [ratlai-agent-bujji.streamlit.app](https://ratlai-agent-bujji.streamlit.app/)
+
 This project implements a multi-agent system using LangChain, Streamlit, and OpenAI's GPT model. The main agent, Bujji, coordinates multiple sub-agents to handle various tasks like research, email sending, and API testing. The system is designed to respond to user queries and delegate tasks to appropriate sub-agents.
 
 ## Features
