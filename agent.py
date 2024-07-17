@@ -6,7 +6,6 @@ import os
 import logging
 from langchain.agents.format_scratchpad.openai_tools import format_to_openai_tool_messages
 from langchain.agents.output_parsers.openai_tools import OpenAIToolsAgentOutputParser
-from langchain_community.agent_toolkits import GmailToolkit
 from langchain_experimental.tools import PythonREPLTool
 from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
 from dotenv import load_dotenv
@@ -35,8 +34,14 @@ llm = ChatOpenAI(api_key=os.getenv('OPENAI_API_KEY'), model=os.getenv('MODEL'), 
 # Define the agent with memory and prompt template
 search = TavilySearchAPIWrapper()
 tavily_tool = TavilySearchResults(api_wrapper=search)
-gmail_toolkit = GmailToolkit()
-gmail_tools = gmail_toolkit.get_tools()
+gmail_tools = []
+
+# Conditionally add Gmail tools if credentials file exists
+if os.path.exists('credentials.json'):
+    from langchain_community.agent_toolkits import GmailToolkit
+    gmail_toolkit = GmailToolkit()
+    gmail_tools = gmail_toolkit.get_tools()
+
 python_tools = [PythonREPLTool()]
 
 # Combine all tools
@@ -67,7 +72,7 @@ bujji_agent = {
     MEMORY_KEY: lambda x: x[MEMORY_KEY],
 } | prompt_template | llm_with_tools | OpenAIToolsAgentOutputParser()
 
-bujji_agent_executor = AgentExecutor(agent=bujji_agent, tools=bujji_tools, verbose=True)
+bujji_agent_executor = AgentExecutor(agent=bujji_agent, tools=bujji_tools, verbose=True, handle_parsing_errors=True)
 
 # Function to handle the delegation
 def delegate_task(user_input: str):
