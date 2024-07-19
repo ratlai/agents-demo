@@ -12,11 +12,11 @@ logger = logging.getLogger(__name__)
 # Define avatars for agents
 agent_avatars = {
     "USER": "image/user.png",
-    "Bujji": "image/ratl.png"
+    "Ratl": "image/ratl.png"
 }
 
 # Streamlit interface
-st.set_page_config(page_title="Conversational App", page_icon="🤖")
+st.set_page_config(page_title="Ratl.app", page_icon="🤖")
 
 # Initialize session state for messages
 if "messages" not in st.session_state:
@@ -33,7 +33,7 @@ for message in st.session_state.messages:
             st.write(message["response"])
 
 # User-provided prompt
-if prompt := st.chat_input("Send a message to Bujji"):
+if prompt := st.chat_input("Send a message to Ratl"):
     # Append user message to session state
     st.session_state.messages.append({"agent": "USER", "response": prompt})
     with st.chat_message("USER", avatar="image/user.png"):
@@ -48,10 +48,10 @@ if prompt := st.chat_input("Send a message to Bujji"):
     # Log API response
     logger.info(f"API response: {response}")
 
-    # Display response from Bujji
-    st.session_state.messages.append({"agent": "Bujji", "response": response})
-    avatar = agent_avatars.get("Bujji", "👤")
-    with st.chat_message("Bujji", avatar=avatar):
+    # Display response from Ratl
+    st.session_state.messages.append({"agent": "Ratl", "response": response})
+    avatar = agent_avatars.get("Ratl", "👤")
+    with st.chat_message("Ratl", avatar=avatar):
         if "```" in response:
             st.markdown(response)  # Display as Markdown if the response contains code
         else:

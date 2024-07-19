@@ -45,19 +45,19 @@ if os.path.exists('credentials.json'):
 python_tools = [PythonREPLTool()]
 
 # Combine all tools
-bujji_tools = [
+ratl_tools = [
     tavily_tool,
     *gmail_tools,
     *python_tools
 ]
 
-llm_with_tools = llm.bind_tools(bujji_tools)
+llm_with_tools = llm.bind_tools(ratl_tools)
 
 prompt_template = ChatPromptTemplate.from_messages(
     [
         (
             "system",
-            "You are Bujji, an intelligent agent responsible for handling all user queries directly and performing tasks using various integrated tools. Always respond to the user in a conversational tone, and ensure all interactions are clear and helpful."
+            "You are Ratl, an intelligent agent responsible for handling all user queries directly and performing tasks using various integrated tools. Always respond to the user in a conversational tone, and ensure all interactions are clear and helpful."
         ),
         MessagesPlaceholder(variable_name=MEMORY_KEY),
         ("user", "{input}"),
@@ -65,14 +65,13 @@ prompt_template = ChatPromptTemplate.from_messages(
         MessagesPlaceholder(variable_name="agent_scratchpad"),
     ]
 )
-
-bujji_agent = {
+ratl_agent = {
     "input": lambda x: x["input"],
     "agent_scratchpad": lambda x: format_to_openai_tool_messages(x["intermediate_steps"]),
     MEMORY_KEY: lambda x: x[MEMORY_KEY],
 } | prompt_template | llm_with_tools | OpenAIToolsAgentOutputParser()
 
-bujji_agent_executor = AgentExecutor(agent=bujji_agent, tools=bujji_tools, verbose=True, handle_parsing_errors=True)
+ratl_agent_executor = AgentExecutor(agent=ratl_agent, tools=ratl_tools, verbose=True, handle_parsing_errors=True)
 
 # Function to handle the delegation
 def delegate_task(user_input: str):
@@ -80,7 +79,7 @@ def delegate_task(user_input: str):
     session[MEMORY_KEY].append({"role": "user", "content": user_input})
     
     try:
-        response = bujji_agent_executor.invoke({
+        response = ratl_agent_executor.invoke({
             "input": user_input,
             MEMORY_KEY: session[MEMORY_KEY],
             "agent_scratchpad": []
