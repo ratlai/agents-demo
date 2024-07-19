@@ -1,6 +1,6 @@
 # Conversational App with Ratl
 
-### Checkout the Demo: [ratlai-agent-Ratl.streamlit.app](https://ratlai-agent-Ratl.streamlit.app/)
+### Checkout the Demo: [ratlai-agent-ratl.streamlit.app](https://ratlai-agent-ratl.streamlit.app)
 
 This project implements a multi-agent system using LangChain, Streamlit, and OpenAI's GPT model. The main agent, Ratl, coordinates multiple sub-agents to handle various tasks like research, email sending, and API testing. The system is designed to respond to user queries and delegate tasks to appropriate sub-agents.
 
