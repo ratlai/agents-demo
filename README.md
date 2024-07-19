@@ -1,12 +1,12 @@
-# Conversational App with Bujji
+# Conversational App with Ratl
 
-### Checkout the Demo: [ratlai-agent-bujji.streamlit.app](https://ratlai-agent-bujji.streamlit.app/)
+### Checkout the Demo: [ratlai-agent-Ratl.streamlit.app](https://ratlai-agent-Ratl.streamlit.app/)
 
-This project implements a multi-agent system using LangChain, Streamlit, and OpenAI's GPT model. The main agent, Bujji, coordinates multiple sub-agents to handle various tasks like research, email sending, and API testing. The system is designed to respond to user queries and delegate tasks to appropriate sub-agents.
+This project implements a multi-agent system using LangChain, Streamlit, and OpenAI's GPT model. The main agent, Ratl, coordinates multiple sub-agents to handle various tasks like research, email sending, and API testing. The system is designed to respond to user queries and delegate tasks to appropriate sub-agents.
 
 ## Features
 
-- **Multi-Agent Coordination**: Bujji, the main agent, coordinates tasks among various sub-agents.
+- **Multi-Agent Coordination**: Ratl, the main agent, coordinates tasks among various sub-agents.
 - **Research Agent**: Handles queries using the Tavily API.
 - **Email Agent**: Sends emails as required (optional, only if credentials.json is present).
 - **API Test Agent**: Generates and executes API test code using the PythonREPLTool.
@@ -114,8 +114,8 @@ Contains avatars for different agents.
 
 ## Usage
 
-1. Interact with Bujji by typing your queries into the chat input.
-2. Bujji will delegate tasks to appropriate sub-agents and return their responses.
+1. Interact with Ratl by typing your queries into the chat input.
+2. Ratl will delegate tasks to appropriate sub-agents and return their responses.
 3. View responses from agents in the chat interface.
 
 ## Contributing
@@ -132,4 +132,4 @@ This project is licensed under the ratl.ai.
 
 For any questions or inquiries, please contact [Amit Kumar Das] at [amitkumardas@gofynd.com].
 
-Enjoy interacting with Bujji and exploring the capabilities of this multi-agent system!
+Enjoy interacting with Ratl and exploring the capabilities of this multi-agent system!
